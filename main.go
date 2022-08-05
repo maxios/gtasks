@@ -20,13 +20,14 @@ import (
 
 	"github.com/BRO3886/gtasks/cmd"
 	"github.com/BRO3886/gtasks/internal/config"
+	"github.com/BRO3886/gtasks/internal/utils"
 )
 
 func main() {
 	folderPath := config.GetInstallLocation()
 	_, err := ioutil.ReadFile(folderPath + "/config.json")
 	if err != nil {
-		config.GenerateConfig()
+		utils.ErrorP("The credential JSON file is not exist: %v", err)
 	}
 	cmd.Execute()
 }
